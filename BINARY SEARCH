@@ -1,0 +1,23 @@
+#Binary Search
+a=[]
+n=int(input("Enter the length of Array: "))
+for i in range (0,n):
+  d=int(input("Enter element: "))
+  a.append(d)
+k=int(input("Enter element you want to search: "))
+a.sort()
+for i in a:
+  print(i)
+low=0
+high=(len(a)-1)
+mid=(low+high)//2
+while low<=high :
+    if a[mid] is k:
+      print("found at ",mid)
+      break
+    elif k>mid:
+      low=mid+1
+      mid=(low+high)//2
+    else:
+      high=mid-1
+      mid=(low+high)//2
