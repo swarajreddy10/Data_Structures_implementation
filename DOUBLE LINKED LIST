@@ -1,0 +1,185 @@
+# Double Linked List Menu Driven Code.
+class Node:
+  def __init__ (self,d):
+    self.data=d
+    self.prev=None
+    self.next=None
+class LinkedList:
+  def __init__(self):
+    self.head=None
+    self.tail=None
+    
+  def InsertBegin(self,d):
+    Newnode=Node(d)
+    if self.head is None:
+      self.head=Newnode
+      self.tail=Newnode
+    else:
+      Newnode.next=self.head
+      self.head.prev=Newnode
+      self.head=Newnode
+
+  def InsertEnd(self,d):
+    Newnode=Node(d)
+    if self.head is None:
+      self.head=Newnode
+      self.tail=Newnode
+    else:
+      temp=self.head
+      while temp.next is not None:
+        temp=temp.next
+      temp.next=Newnode
+      Newnode.prev=temp
+      self.tail=Newnode
+      
+  def Insert(self,d,j,n):
+    if self.head is None:
+      print("Double Linked list is empty")
+    else:
+      Newnode=Node(d)
+      i=1
+      if j in range (i+1,n+1):
+        temp=self.head
+        while i<j:
+          temp=temp.next
+          i=i+1
+
+        temp.prev.next=Newnode
+        Newnode.prev=temp.prev
+        Newnode.next=temp
+        temp.prev=Newnode
+      elif j is 1:
+        L1.InsertBegin(d)
+      elif j is n+1:
+        L1.InsertEnd(d)
+      else:
+        print("This Position Does Not Exist In Double Linked List")
+
+
+  def DeleteBegin(self):
+    if self.head is None:
+      print("Double Linked List is Empty")
+    else:
+      temp=self.head
+      self.head=temp.next
+      temp.next.prev=None
+      print("\nDelete Begin Successfull\n")
+
+  def DeleteEnd(self):
+    if self.head is None:
+      print("Double Linked List is Empty")
+    else:
+      temp=self.tail
+      temp.prev.next=None
+      self.tail=temp.prev
+      print("\nDelete End Successfull\n")
+
+  def Delete(self,j,n):
+    if self.head is None:
+      print("Double Linked List is Empty")
+    else:
+      temp=self.head
+      i=1
+      if j in range (i+1,n):
+        while i<j:
+          temp=temp.next
+          i=i+1
+      
+        temp.prev.next=temp.next
+        temp.next.prev=temp.prev
+
+        print("Deletion at Nth Successfull")
+      elif j is 1:
+        L1.DeleteBegin()
+      elif j is n:
+        L1.DeleteEnd()
+      else:
+          print("This Position Does Not Exist in Double Linked List.")
+
+  def Count(self):
+    if self.head is None:
+      return 0
+    i=1
+    temp=self.tail
+    while temp.prev is not None:
+      temp=temp.prev
+      i=i+1
+    return i
+
+  def Search(self,k,n):
+    i=1
+    temp=self.head
+    while temp is not None:
+      if temp.data is k: 
+        return i
+      i=i+1
+      temp=temp.next
+      if i>n: return -1
+
+  def print(self):
+    temp=self.head
+    print("Traversing From Head: ")
+    while temp.next is not None:
+      print(temp.data,end="->")
+      temp=temp.next
+    print(temp.data)
+    temp=self.tail
+    print("Traversing From Tail: ")
+    while temp.prev is not None:
+      print(temp.data,end="->")
+      temp=temp.prev
+    print(temp.data)
+ch=None
+L1=LinkedList()
+print("""Select your option
+  0.Terminate
+  1.Insert Begin
+  2.Insert End
+  3.Insert at Nth
+  4.Delete Begin
+  5.Delete End
+  6.Delete at Nth
+  7.Count
+  8.Search
+  9.Display""")
+  
+while ch is not 0:
+  ch=int(input("Enter Choice: "))
+  if ch is 1:
+    n=int(input("N: "))
+    for i in range (0,n):
+      d=int(input())
+      L1.InsertBegin(d)
+    print("\nInserting at begin successfull")
+  if ch is 2:
+    n=int(input("N: "))
+    for i in range (0,n):
+      d=int(input())
+      L1.InsertEnd(d)
+    print("\nInserting at end successfull")
+  if ch is 3:   
+    d=int(input("Enter data: "))
+    j=int(input("Enter POs: "))
+    n=L1.Count()
+    L1.Insert(d,j,n)
+  if ch is 4:
+    L1.DeleteBegin()
+  if ch is 5:
+    L1.DeleteEnd()
+  if ch is 6:
+    j=int(input("Enter Position: "))
+    n=L1.Count()
+    L1.Delete(j,n)
+  if ch is 7:
+    n=L1.Count()
+    print("Total Number of Nodes: ",n)
+  if ch is 8:
+    k=int(input("Enter Key Element you want to Search: "))
+    n=L1.Count()
+    i=L1.Search(k,n)
+    if i>0:
+      print("Key Element Found at: ",i)
+    else:
+      print("Key Element Not Present In Double Linked List")
+  if ch is 9:
+    L1.print()
