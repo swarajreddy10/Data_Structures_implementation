@@ -1,0 +1,63 @@
+#Linear Queue
+class queue:
+  def __init__ (self,max):
+    self.queue=[]
+    self.max=max
+    self.rear=-1
+    self.front=0
+
+  def enque(self,d):
+    if self.rear+1>=self.max:
+      print("Overflow")
+    else:
+      self.queue.append(d)
+      self.rear=self.rear+1
+
+  def Display(self):
+    if self.front>self.rear:
+      print("UnderFlow")
+    else:
+      for i in range(self.front,self.rear+1):
+        print(self.queue[i],end=" ")
+
+  def deque(self):
+    if self.front<=self.rear:
+      print("Element",self.queue[self.front],"is deleted")
+      self.front=self.front+1
+    else:
+      print("Underflow")
+
+  def IsFull(self):
+    if self.rear+1>=self.max:
+      print("Queue is Full")
+    else:
+      print("Queue is not full")
+  def IsEmpty(self):
+    if self.front>self.rear:
+      print("Queue is empty")
+    else:
+      print("Queue is not empty")
+ch=None
+q=queue(5)
+print("""Enter Your Choice
+0.Terminate.
+1.Enque.
+2.Deque.
+3.Display.
+4.Is Full.
+5.Is Empty.""")
+while ch is not 0:
+  ch=int(input("Enter choice: "))
+  if ch is 1:
+    n=int(input("Enter Number of elements to be inserted: "))
+    for i in range (0,n):
+      d=int(input("Enter data: "))
+      q.enque(d)
+  elif ch is 2:
+    q.deque()
+  elif ch is 3:
+    q.Display()
+  elif ch is 4:
+    q.IsFull()
+  elif ch is 5:
+    q.IsEmpty()
