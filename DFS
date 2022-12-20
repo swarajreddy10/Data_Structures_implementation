@@ -1,0 +1,19 @@
+#DFS
+def DFS(graph,start):
+  visited=[]
+  stack=[start]
+  while stack:
+    n=stack.pop()
+    if n not in visited:
+      visited.append(n)
+      for i in graph[n]:
+        stack.append(i)
+  return visited
+graph={"A":["B","C"],
+       "B":["D","E"],
+       "C":["F"],
+       "D":[],
+       "E":["F"],
+       "F":[]}
+visited=DFS(graph,"A")
+print(visited)
