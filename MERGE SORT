@@ -1,0 +1,47 @@
+#MergeSort 
+def merge (a,l,m,h):
+  n1=m-l+1
+  n2=h-m
+  left=[]  
+  right=[]  
+
+  for i in range (0,n1):
+    left.append(a[l+i])
+  for i in range (0,n2):
+    right.append(a[m+1+i])
+  i=j=0
+  k=l
+  while i<n1 and j<n2:
+    if left[i]<right[j]:
+      a[k]=left[i]
+      i=i+1
+    else:
+      a[k]=right[j]
+      j=j+1
+    k=k+1
+  while i<n1:
+    a[k]=left[i]
+    i=i+1
+    k=k+1
+  while j<n2:
+    a[k]=right[j]
+    j=j+1
+    k=k+1
+  
+
+def mergesort(a,l,h):
+  if l<h:
+    m=(l+h)//2
+    mergesort(a,l,m)
+    mergesort(a,m+1,h)
+    merge(a,l,m,h)
+a=[]
+n=int(input("Enter the length of Array: "))
+for i in range (0,n):
+  d=int(input("Enter element: "))
+  a.append(d)
+l=0
+h=n-1
+mergesort(a,l,h)
+for i in a:
+  print(i)
