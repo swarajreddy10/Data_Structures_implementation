@@ -1,0 +1,161 @@
+# Single Linked List Menu Driven Code.
+class Node:
+  def __init__ (self,d):
+    self.data=d
+    self.next=None
+
+class LinkedList:
+  def __init__(self):
+    self.head=None
+  def InsertBegin(self,d):
+    Newnode=Node(d)
+    Newnode.next=self.head
+    self.head=Newnode
+
+  def InsertEnd(self,d):
+    Newnode=Node(d)
+    if self.head is None:
+      self.head=Newnode
+    else:
+     temp=self.head
+     while temp.next is not None:
+       temp=temp.next
+     temp.next=Newnode
+      
+  def Insert(self,d,n,j):
+    Newnode=Node(d)
+    i=1
+    if self.head is None:
+      print("Linked list does not exists")
+    elif j in range (i+1,n):
+      temp=self.head
+      while i<j:
+        temp1=temp
+        temp=temp.next
+        i=i+1
+      if i is j:
+        Newnode.next=temp
+        temp1.next=Newnode 
+    elif j is 1:
+       L1.InsertBegin(d)
+    elif j is n:
+       L1.InsertEnd(d)
+    elif j>i:
+       print("\nThis Position does not exist\n")
+
+  def DeleteBegin(self):
+    if self.head is None:
+      print("Linked List is Empty")
+    else:
+      temp=self.head
+      self.head=temp.next
+
+  def DeleteEnd(self):
+    if self.head is None:
+      print("Linked List is empty")
+    else:
+      temp=self.head
+      while temp.next is not None:
+        temp1=temp
+        temp=temp.next
+      temp1.next=None
+  
+  def Delete(self,n,j):
+    if self.head is None:
+      print("Linked List is empty")
+    else:
+     i=1
+     if j in range (i+1,n):
+       temp=self.head
+       while i<j:
+         temp1=temp
+         temp=temp.next
+         i=i+1
+       temp1.next=temp.next
+       temp.next=None
+     if j is 1:
+       l1.DeleteBegin()
+     if j is n:
+       l1.DeleteEnd()
+  def Count(self):
+    if self.head is None:
+      return None
+    temp=self.head
+    i=1
+    while temp.next is not None:
+      temp=temp.next
+      i=i+1
+    return i
+  def Search(self,k,n):
+    i=1
+    temp=self.head
+    while temp is not None:
+      if temp.data is k:
+        print("Data is found at",i)
+        break
+      else: 
+        i=i+1
+        temp=temp.next
+    if i>n:
+       print("Data is not in Linked List")
+  def Print(self):
+    temp=self.head
+    while temp.next is not None:
+      print(temp.data,end="->")
+      temp=temp.next
+    print(temp.data)
+       
+
+ch=None
+L1=LinkedList()
+while ch !=0:
+  print("""Please Select Your Choice
+  0.To Terminate This Program
+  1.Insert Begin
+  2.Insert End
+  3.Insert at Nth Position
+  4.Delete Begin
+  5.Delete End
+  6.Delete at Position 
+  7.Search
+  8.Count
+  9.Print or Display""")
+  ch=int(input())
+  if ch is 1:
+    print("\nInsert Begin\n")
+    n=int(input("Enter N:"))
+    print("Enter elements for Linked List To Insert Begin")
+    for i in range(0,n):
+      d=int(input())
+      L1.InsertBegin(d)
+  elif ch is 2:
+    print("\nInsert End\n")
+    n=int(input("Enter N:"))
+    print("Enter elements for Linked List To Inser End")
+    for i in range(0,n):
+      d=int(input())
+      L1.InsertEnd(d)
+  elif ch is 3:
+    d=int(input("Enter Element: "))
+    j=int(input("Enter Position: "))
+    n=L1.Count()
+    L1.Insert(d,n,j)
+  elif ch is 4:
+    L1.DeleteBegin()
+  elif ch is 5:
+    L1.DeleteEnd()
+  elif ch is 6:
+    n=L1.Count()       
+    j=int(input("Enter Position you want to delete"))                   
+    L1.Delete(n,j)                                       
+  elif ch is 7:
+    d=int(input("Enter Data to be searched: "))          
+    n=L1.Count()                                   
+    L1.Search(d,n)  
+  elif ch is 8:
+    n=L1.Count()
+    print("\nNumber of Nodes: ",n) 
+  elif ch is 9:
+    print("\nLinked List")
+    L1.Print()
+    print("\n")
