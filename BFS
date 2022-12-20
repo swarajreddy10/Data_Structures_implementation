@@ -1,0 +1,19 @@
+#BFS
+def BFS(graph,start):
+  visited=[start]
+  queue=[start]
+  while queue:
+    n=queue.pop(0)
+    for i in graph[n]:
+      if i not in visited:
+        queue.append(i)
+        visited.append(i)
+  return visited
+graph={"A":["B","C"],
+       "B":["A","D","E"],
+       "C":["A","F"],
+       "D":["B"],
+       "E":["B","F"],
+       "F":["C","E"]}
+visited=BFS(graph,"D")
+print(visited)
