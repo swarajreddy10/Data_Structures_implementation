@@ -1,0 +1,66 @@
+#Infix to postfix
+class Stack:
+  def __init__ (self,max):
+    self.stack=[]
+    self.top=-1
+    self.max=max
+
+  def Push(self,d):
+    if self.top+1>= self.max:
+      print("OverFlow")
+      return -1
+    else:
+      self.top=self.top+1
+      self.stack.append(d)
+
+  def Pop (self):
+    if self.top is -1:
+      return -1
+    else:
+      b=self.stack.pop()
+      self.top=self.top-1
+      return b
+  def Peek(self):
+    if self.top is -1:
+      return -1
+    else:
+      return self.stack[self.top]
+  def Size(self):
+    return self.top
+
+S=Stack(15)
+O=[]
+priority={"(":1,"+":2,"-":2,"*":3,"/":3,"^":4}
+symbol=["+","-","*","/","^"]
+a=str(input("Enter Infix Expression: "))
+i=0
+while i in range(0,len(a)):
+  if a[i] in symbol:
+    peek=S.Peek()
+    if peek is -1:
+      S.Push(a[i])
+    elif priority[peek]>=priority[a[i]]:
+      while priority[peek]>=priority[a[i]]:
+        p=S.Pop()
+        O.append(p)
+        peek=S.Peek()
+        if peek is -1: break
+      S.Push(a[i])
+    else:
+      S.Push(a[i])
+  elif a[i] is "(":
+    S.Push(a[i])
+  elif a[i] is ")":
+    p=S.Pop()
+    while p is not "(":
+      O.append(p)
+      p=S.Pop()
+  else:
+    O.append(a[i])
+  i=i+1
+Size=S.Size()
+for i in range (0,Size+1):
+  p=S.Pop()
+  O.append(p)
+O="".join(O)
+print("PostFix Expression: ",O)
