@@ -1,0 +1,32 @@
+#String reversing using stack.
+class Stack:
+  def __init__ (self,max):
+    self.stack=[]
+    self.top=-1
+    self.max=max
+
+  def Push(self,d):
+    if self.top+1>= self.max:
+      print("OverFlow")
+      return -1
+    else:
+      self.top=self.top+1
+      self.stack.append(d)
+
+  def Pop (self):
+    if self.top is -1:
+      return -1
+    else:
+      b=self.stack.pop()
+      self.top=self.top-1
+      return b
+S=Stack(50)
+a=str(input("Enter String: "))
+O=[]
+for i in a:
+  S.Push(i)
+for i in range(0,len(a)):
+  d=S.Pop()
+  O.append(d)
+O="".join(O)
+print("Reversed String: ",O)
