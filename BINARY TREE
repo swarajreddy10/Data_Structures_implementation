@@ -1,0 +1,46 @@
+#Binary Tree
+class Node:
+  def __init__(self,d):
+    self.data=d
+    self.right=None
+    self.left=None
+
+class BinaryTree:
+  def Insert(self):
+    d=int(input("Enter data (press -99 for None): "))
+    if d == -99:
+      return None
+    else:
+      Newnode=Node(d)
+      print("Enter left of:",Newnode.data)
+      Newnode.left=self.Insert()
+      print("Enter right of: ",Newnode.data)
+      Newnode.right=self.Insert()
+      return Newnode
+
+  def Preorder(self,root):
+    if root is not None:
+      print(root.data,end=" ")
+      self.Preorder(root.left)
+      self.Preorder(root.right)
+
+  def Inorder(self,root):
+    if root is not None:
+      self.Inorder(root.left)
+      print(root.data,end=" ")
+      self.Inorder(root.right)
+
+  def Postorder(self,root):
+    if root is not None:
+      self.Postorder(root.left)
+      self.Postorder(root.right)
+      print(root.data,end=" ")
+
+B=BinaryTree()
+root=B.Insert()
+print("Preorder Traversal:\n")
+p=B.Preorder(root)
+print("Inorder Traversal: \n")
+p=B.Inorder(root)
+print("Postorder Traversal: \n")
+p=B.Postorder(root)
