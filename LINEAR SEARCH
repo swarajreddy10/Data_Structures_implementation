@@ -1,0 +1,17 @@
+#Linear Search
+a=[]
+n=int(input("Enter the length of Array: "))
+for i in range (0,n):
+  d=int(input("Enter element: "))
+  a.append(d)
+k=int(input("Enter element you want to search: "))
+c=0
+j=1
+for i in a:
+  if k==i:
+    print("Found at postion",j)
+    c=c+1
+    break
+  else: j=j+1
+if c!=1:
+  print("Not Found")
