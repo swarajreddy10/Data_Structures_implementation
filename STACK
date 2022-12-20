@@ -1,0 +1,81 @@
+#Stack Using Arrays
+class Stack:
+  def __init__ (self,max):
+    self.stack=[]
+    self.top=-1
+    self.max=max
+
+  def Push(self,d):
+    if self.top+1>= self.max:
+      print("OverFlow")
+      return -1
+    else:
+      self.top=self.top+1
+      self.stack.append(d)
+
+  def Pop (self):
+    if self.top is -1:
+      print("UnderFlow")
+    else:
+      b=self.stack.pop()
+      print("Item ",b," is Poped")
+      self.top=self.top-1
+
+  def IsEmpty(self):
+    if self.top is -1:
+      print("Stack is Empty")
+    else:
+      print("Stack is Not Empty")
+
+  def IsFull(self):
+    if self.top+1>=self.max:
+      print("Stack Is Full")
+    else:
+      print("Stack Is Not Full")
+
+  def Peek(self):
+    if self.top is -1:
+      print("UnderFlow")
+    else:
+      print("Peek Element: ",self.stack[self.top])
+
+  def Display (self):
+    if self.top is -1:
+      print("UnderFlow")
+      print("Top: ",self.top)
+    else:
+      i=self.top
+      while i>=0:
+        print(self.stack[i])
+        i=i-1
+      
+max=5      
+s1=Stack(max)
+ch=None
+print("""Please Select Your Choice
+0.Terminate
+1.Push
+2.Pop
+3.IsEmpty
+4.IsFull
+5.Peek
+6.Display""")
+while ch is not 0:
+  ch=int(input("Enter Choice: "))
+  if ch is 1:
+    Max=int(input("Enter Number of Elements to push: "))
+    for i in range (0,Max):
+      d=int(input("Enter data: "))
+      s=s1.Push(d)
+      if s is -1:
+        break
+  if ch is 2:
+    s1.Pop()
+  if ch is 3:
+    s1.IsEmpty()
+  if ch is 4:
+    s1.IsFull()
+  if ch is 5:
+    s1.Peek()
+  if ch is 6:
+    s1.Display()
