@@ -1,0 +1,37 @@
+#Quick Sort
+def Part (a,l,h):
+  pi=l
+  i=l
+  j=h
+  while i<j:
+    while a[i]<a[pi]:
+      i=i+1
+    while a[j]>a[pi]:
+      j=j-1
+    if i<j:
+      temp=a[i]
+      a[i]=a[j]
+      a[j]=temp
+  temp=a[j]
+  a[j]=a[pi]
+  a[pi]=temp
+  return j
+
+    
+def Quicksort (a,l,h):
+  if l<h:
+    p=Part(a,l,h)
+    Quicksort(a,l,p-1)
+    Quicksort(a,p+1,h)
+
+a=[]
+n=int(input("Enter the length of Array: "))
+for i in range (0,n):
+  d=int(input("Enter element: "))
+  a.append(d)
+
+l=0
+h=n-1
+Quicksort(a,l,h)
+for i in a:
+  print(i)
