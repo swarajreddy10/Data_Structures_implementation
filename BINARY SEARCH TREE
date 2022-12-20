@@ -1,0 +1,79 @@
+#binary search tree
+class Node:
+  def __init__(self,d):
+    self.data=d
+    self.left=None
+    self.right=None
+
+class BinarySearchTree:
+  def __init__(self):
+    self.root=None
+
+  def Insert(self,d):
+    if self.root is None:
+      Newnode=Node(d)
+      self.root=Newnode
+    else:
+      self.insert(d,self.root)
+    return self.root
+
+  def insert(self,d,root):
+    if d<root.data:
+      if root.left is None:
+        root.left=Node(d)
+      else:
+        self.insert(d,root.left)
+    else:
+      if root.right is None:
+        root.right=Node(d)
+      else:
+        self.insert(d,root.right)
+
+  def Search(self,d,root):
+    if root is not None:
+      if d==root.data:
+        print(d,"is Found")
+        return 
+      elif d<root.data:
+        self.Search(d,root.left)
+      else:
+        self.Search(d,root.right)
+    else:
+      print("Not Found")
+
+  def Preorder(self,root):
+    if root is not None:
+      print(root.data,end=" ")
+      self.Preorder(root.left)
+      self.Preorder(root.right)
+
+  def Inorder(self,root):
+    if root is not None:
+      self.Inorder(root.left)
+      print(root.data,end=" ")
+      self.Inorder(root.right)
+
+  def Postorder(self,root):
+    if root is not None:
+      self.Postorder(root.left)
+      self.Postorder(root.right)
+      print(root.data,end=" ")
+
+B=BinarySearchTree()
+n=int(input("Enter N: "))
+for i in range (0,n):
+  d=int(input("Enter data: "))
+  root=B.Insert(d)
+#a=[7,5,4,6,9,8,10]
+#for i in a:
+#  root=B.Insert(i)
+print("BST is Created.")
+print("Preorder Traversal:")
+p=B.Preorder(root)
+print("\nInorder Traversal: ")
+p=B.Inorder(root)
+print("\nPostorder Traversal: ")
+p=B.Postorder(root)
+print("\n")
+n=int(input("Enter Key value: "))
+S=B.Search(n,root)
