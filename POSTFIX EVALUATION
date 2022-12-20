@@ -1,0 +1,59 @@
+#PostFix Evaluation.
+class Stack:
+  def __init__ (self,max):
+    self.stack=[]
+    self.top=-1
+    self.max=max
+
+  def Push(self,d):
+    if self.top+1>= self.max:
+      print("OverFlow")
+      return -1
+    else:
+      self.top=self.top+1
+      self.stack.append(d)
+
+  def Pop (self):
+    if self.top is -1:
+      return -1
+    else:
+      b=self.stack.pop()
+      #print("Item ",b," is Poped")
+      self.top=self.top-1
+      return b
+      
+  def Peek(self):
+    if self.top is -1:
+      return -1
+    else:
+      return self.stack[self.top]
+
+S=Stack(10)
+a=str(input("Enter Postfix Expression: "))
+symbol=["+","-","*","/","^"]
+i=0
+while i in range (0,len(a)):
+  if a[i] not in symbol:
+    S.Push(int(a[i]))
+  if a[i] in symbol:
+    d1=S.Pop()
+    d2=S.Pop()
+    s=a[i]
+    if s is "+":
+      d=d2+d1
+      S.Push(d)
+    elif s is "-":
+      d=d2-d1
+      S.Push(d)
+    elif s is "*":
+      d=d2*d1
+      S.Push(d)
+    elif s is "/":
+      d=d2/d1
+      S.Push(d)
+    elif s is "^":
+      d=pow(d2,d1)
+      S.Push(d)
+  i=i+1
+d=S.Pop()
+print("Answer: ",d)
