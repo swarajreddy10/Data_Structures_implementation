@@ -12,5 +12,3 @@ Implemented Algorithms:
 Motivation:
 These implementations reflect my initial understanding and problem-solving abilities in data structures and algorithms. It’s the result of hands-on practice and learning, using both internet resources and college library materials.
 
-**Swaraj Chandra Reddy M**  
-GitHub: [swarajreddy10](https://github.com/swarajreddy10)
